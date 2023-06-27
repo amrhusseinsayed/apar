@@ -1,0 +1,18 @@
+{
+  "subscriptions": {
+    "Egypt": [
+      {
+        "name": "LITE",
+        "price": "0.25 USD/month",
+        "discovery": "Included",
+        "quality": "HD",
+        "devices": "4",
+        "rewind": "For 14 days",
+        "offline": false,
+        "simultaneously": false,
+        "cast": false,
+        "fight": "5.33USD/month"
+      }
+    ]
+  }
+}

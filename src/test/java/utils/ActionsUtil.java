@@ -1,6 +1,5 @@
 package utils;
 
-import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import org.apache.log4j.Logger;
@@ -13,6 +12,8 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 public class ActionsUtil {
     private static final Logger log = Logger.getLogger(ActionsUtil.class);
@@ -38,6 +39,10 @@ public class ActionsUtil {
                     , Arrays.toString(e.getStackTrace())));
             throw e;
         }
+    }
+
+    protected List<WebElement> findElements(By locator) {
+        return driver.findElements(locator);
     }
 
     /**
@@ -177,6 +182,13 @@ public class ActionsUtil {
         driver.switchTo().defaultContent();
     }
 
+    public void isElementTextEquals(WebElement element, String text) {
+        assert Objects.equals(element.getText(), text);
+    }
+
+    public void isElementAttributeEquals(WebElement element, String attribute, String value) {
+        assert Objects.equals(element.getAttribute(attribute), value);
+    }
 
     // endregion
 

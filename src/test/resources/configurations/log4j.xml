@@ -6,7 +6,7 @@
 
 <appender name="fileAppender" class="org.apache.log4j.FileAppender">
 
-<param name="File" value="src/test/resources/testOutputs/logfile.log"/>
+<param name="File" value="target/cucumber-reports/logfile.log"/>
 
 <param name="append" value="false"/>
 

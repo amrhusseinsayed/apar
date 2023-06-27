@@ -23,7 +23,7 @@ public class TestRunner {
     /**
      * This method is executed before all the test case to extract
      * the run properties from the config.properties file, extract
-     * the test data from the data.json file, initialize the html
+     * the test data from the subscriptions.json file, initialize the html
      * report and finally to load the configuration
      * of the Log4j through its configuration file path added to
      * the properties file

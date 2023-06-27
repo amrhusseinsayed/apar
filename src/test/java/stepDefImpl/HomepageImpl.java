@@ -1,94 +1,51 @@
 package stepDefImpl;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import utils.ActionsUtil;
+import utils.JsonFileUtil;
 
-import java.util.Arrays;
+import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
 
 public class HomepageImpl extends ActionsUtil {
-    @CacheLookup
-    @FindBy(css = "[class='login']")
-    private WebElement signInBtn;
+    private final By row = By.cssSelector(".plan-row .plan-names");
+    private final By titleCell = By.cssSelector("div>strong");
+    private final By textCell = By.cssSelector("div");
+    private final By priceCell = By.cssSelector("div>div");
+    private final By imageCell = By.cssSelector("img");
 
-    @CacheLookup
-    @FindBy(css = "[class='logout']")
-    private WebElement signOutBtn;
+    @SuppressWarnings("unchecked")
+    public void validateSubscriptionPlans(String country) throws IOException, ParseException {
+        List<JSONObject> subscriptions = (List<JSONObject>) ((JSONObject) JsonFileUtil.readJsonObject("src/test/resources/test-data/subscriptions.json").get("subscriptions")).get(country);
+        List<WebElement> rows = findElements(row);
 
-    @CacheLookup
-    @FindBy(xpath = "//ul[not (contains(@style,'display: none;'))]/li/a[@title='T-shirts']")
-    private WebElement tShirts;
+        assert rows.size() == subscriptions.get(0).entrySet().size() + 1;
 
-    public HomepageImpl() {
-        PageFactory.initElements(driver, this);
+        subscriptions.forEach(subscription -> {
+            int rowIndex = 0;
+            int subscriptionIndex = subscriptions.indexOf(subscription);
+
+            isElementTextEquals(rows.get(rowIndex++).findElements(titleCell).get(subscriptionIndex), subscription.get("name").toString());
+            isElementTextEquals(rows.get(rowIndex++).findElements(priceCell).get(subscriptionIndex), subscription.get("price").toString());
+            isElementTextEquals(rows.get(rowIndex++).findElements(textCell).get(subscriptionIndex), subscription.get("discovery").toString());
+            isElementTextEquals(rows.get(rowIndex++).findElements(textCell).get(subscriptionIndex), subscription.get("quality").toString());
+            isElementTextEquals(rows.get(rowIndex++).findElements(textCell).get(subscriptionIndex), subscription.get("devices").toString());
+            isElementTextEquals(rows.get(rowIndex++).findElements(textCell).get(subscriptionIndex), subscription.get("rewind").toString());
+            verifyCellImage(rows.get(rowIndex++).findElements(imageCell).get(subscriptionIndex), subscription.get("offline").toString());
+            verifyCellImage(rows.get(rowIndex++).findElements(imageCell).get(subscriptionIndex), subscription.get("simultaneously").toString());
+            verifyCellImage(rows.get(rowIndex++).findElements(imageCell).get(subscriptionIndex), subscription.get("cast").toString());
+            isElementTextEquals(rows.get(rowIndex++).findElements(textCell).get(subscriptionIndex), subscription.get("discovery").toString());
+            isElementTextEquals(rows.get(rowIndex).findElements(textCell).get(subscriptionIndex), subscription.get("fight").toString());
+        });
     }
 
-    /**
-     * This method is used t click on the sign in button
-     * that exists in the homepage
-     */
-    public void clickOnSignInButton() {
-        try {
-            clickOn(signInBtn, false);
-            logInfo("Click on the sign in button");
-        } catch (Exception e) {
-            logError("Exception while trying to click on the sign in of the registration form");
-            logError(String.format("Stack Trace: %s"
-                    , Arrays.toString(e.getStackTrace())));
-            throw e;
-        }
-    }
-
-    /**
-     * This method is used to assert the the registration or the login
-     * is completed by waiting for the sign out button to be visible
-     */
-    public void isUserLoggedIn() {
-        try {
-            logInfo("Waiting for the sign out button to be visible");
-            waitForElementVisibility(signOutBtn);
-            logInfo("The sign out button is now visible");
-        } catch (Exception e) {
-            logError("Exception while waiting for the sign out button to be visible");
-            logError(String.format("Stack Trace: %s"
-                    , Arrays.toString(e.getStackTrace())));
-            throw e;
-        }
-    }
-
-    /**
-     * This method is used to click on a menu based on its given
-     * name
-     *
-     * @param menuName the name of the menu
-     * @throws Exception in case of not being able to click on the
-     *                   menu that matches the given name or in case
-     *                   the given name does not match any menu in
-     *                   the pae
-     */
-    public void clickOnMenu(String menuName) throws Exception {
-        try {
-            switch (menuName.toLowerCase()) {
-                case "t-shirts":
-                    clickOn(tShirts, false);
-                    break;
-                case "dress":
-                case "women":
-                    break;
-                default:
-                    throw new Exception(String.format("Invalid menu name: '%s'"
-                            , menuName));
-            }
-
-            logInfo(String.format("Navigate to %s page", menuName));
-        } catch (Exception e) {
-            logError(String.format("Exception while navigating the the %s page"
-                    , menuName));
-            logError(String.format("Stack Trace: %s"
-                    , Arrays.toString(e.getStackTrace())));
-            throw e;
-        }
+    private void verifyCellImage(WebElement cell, String status) {
+        String disabledSign = "https://cdn-stg.jawwy.tv/28/New%20Design/jawwy_close.svg";
+        String enabledSign = "https://cdn-stg.jawwy.tv/28/New%20Design/jawwy_check.svg";
+        isElementAttributeEquals(cell, "src", Objects.equals(status, "true") ? enabledSign : disabledSign);
     }
 }

@@ -1,4 +1,5 @@
 Feature: Subscriptions Feature
 
-  Scenario: Registration Scenario
+  Scenario: Egypt Subscriptions Scenario
     Given user navigates to the homepage
+    Then validates the plans details for Egypt
