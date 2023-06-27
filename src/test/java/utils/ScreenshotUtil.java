@@ -1,7 +1,8 @@
 package utils;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +11,7 @@ import java.io.File;
 import java.util.Base64;
 
 public class ScreenshotUtil {
-    private static final Logger log = Logger.getLogger(ScreenshotUtil.class);
+    private static final Logger log = LogManager.getLogger(ScreenshotUtil.class);
 
     /**
      * This method is used to take a screenshot from the current view

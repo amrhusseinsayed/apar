@@ -2,7 +2,8 @@ package utils;
 
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class ActionsUtil {
-    private static final Logger log = Logger.getLogger(ActionsUtil.class);
+    private static final Logger log = LogManager.getLogger(ActionsUtil.class);
     protected static WebDriver driver;
     protected static FluentWait<WebDriver> wait;
     protected static ExtentTest test;

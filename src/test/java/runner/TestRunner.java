@@ -6,7 +6,6 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import utils.ExtentReportUtil;
-import utils.Log4jUtil;
 import utils.PropertiesFileUtil;
 
 import java.util.Properties;
@@ -31,13 +30,11 @@ public class TestRunner {
      */
     @BeforeClass
     public static void beforeClass() throws Exception {
-        String propertyFilePath = "./src/test/resources/configurations/config.properties";
+        String propertyFilePath = "./src/test/resources/config.properties";
         PropertiesFileUtil.setProperties(propertyFilePath);
         Properties properties = PropertiesFileUtil.getProperties();
-
         ExtentReportUtil.initializeHtmlReport(properties.getProperty("htmlReportPath")
                 , properties.getProperty("htmlReportConfigPath"));
-        Log4jUtil.loadConfigurations(properties.getProperty("log4jConfigPath"));
     }
 
     /**

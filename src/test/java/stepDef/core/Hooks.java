@@ -7,14 +7,15 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.Status;
 import io.cucumber.java.en.Given;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import utils.*;
 
 import java.util.Arrays;
 import java.util.Properties;
 
 public class Hooks extends ActionsUtil {
-    private final Logger log = Logger.getLogger(Hooks.class);
+    private final Logger log = LogManager.getLogger(Hooks.class);
     private final ExtentReports report = ExtentReportUtil.getReport();
     private final Properties properties = PropertiesFileUtil.getProperties();
 

@@ -37,7 +37,6 @@ public class DriverUtil {
         long timeout = Long.parseLong(properties.getProperty("timeout"));
         long polling = Long.parseLong(properties.getProperty("polling"));
         String browser = properties.getProperty("browser");
-        boolean runHeadless = Boolean.parseBoolean(properties.getProperty("runHeadless"));
         PageLoadStrategy pageLoadStrategy = getPageLoadStrategy(properties.getProperty("pageLoadStrategy"));
 
         switch (browser.toLowerCase()) {
@@ -62,13 +61,10 @@ public class DriverUtil {
                 chromeOptions.addArguments("--disable-device-discovery-notifications");
                 chromeOptions.setExperimentalOption("excludeSwitches"
                         , Collections.singletonList("enable-automation"));
-                chromeOptions.setHeadless(runHeadless);
                 chromeOptions.setPageLoadStrategy(pageLoadStrategy);
-                chromeOptions.setCapability("perfLoggingPrefs", logPrefs);
                 chromeOptions.setAcceptInsecureCerts(true);
-                chromeOptions.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR
+                chromeOptions.setCapability(CapabilityType.UNHANDLED_PROMPT_BEHAVIOUR
                         , UnexpectedAlertBehaviour.IGNORE);
-
 
                 prefs.put("credentials_enable_service", false);
                 prefs.put("profile.password_manager_enabled", false);
@@ -86,9 +82,8 @@ public class DriverUtil {
                 ffOptions.addPreference("dom.webnotifications.enabled", false);
                 ffOptions.setProfile(firefoxProfile);
                 ffOptions.setLogLevel(FirefoxDriverLogLevel.ERROR);
-                ffOptions.setHeadless(runHeadless);
                 ffOptions.setPageLoadStrategy(pageLoadStrategy);
-                ffOptions.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR
+                ffOptions.setCapability(CapabilityType.UNHANDLED_PROMPT_BEHAVIOUR
                         , UnexpectedAlertBehaviour.IGNORE);
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver(ffOptions);
@@ -96,7 +91,7 @@ public class DriverUtil {
             case "ie":
                 InternetExplorerOptions ieOptions = new InternetExplorerOptions();
                 ieOptions.setPageLoadStrategy(pageLoadStrategy);
-                ieOptions.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR
+                ieOptions.setCapability(CapabilityType.UNHANDLED_PROMPT_BEHAVIOUR
                         , UnexpectedAlertBehaviour.IGNORE);
                 System.setProperty("webdriver.ie.driver.loglevel", "ERROR");
                 WebDriverManager.iedriver().setup();
@@ -105,7 +100,7 @@ public class DriverUtil {
             case "edge":
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.setPageLoadStrategy(pageLoadStrategy);
-                edgeOptions.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR
+                edgeOptions.setCapability(CapabilityType.UNHANDLED_PROMPT_BEHAVIOUR
                         , UnexpectedAlertBehaviour.IGNORE);
                 WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver(edgeOptions);
