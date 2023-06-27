@@ -6,7 +6,6 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import utils.ExtentReportUtil;
-import utils.JsonFileUtil;
 import utils.Log4jUtil;
 import utils.PropertiesFileUtil;
 
@@ -22,9 +21,8 @@ import java.util.Properties;
 public class TestRunner {
     /**
      * This method is executed before all the test case to extract
-     * the run properties from the config.properties file, extract
-     * the test data from the subscriptions.json file, initialize the html
-     * report and finally to load the configuration
+     * the run properties from the config.properties file, initialize
+     * the html report and finally to load the configuration
      * of the Log4j through its configuration file path added to
      * the properties file
      *

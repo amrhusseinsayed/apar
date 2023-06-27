@@ -15,10 +15,9 @@ public class PropertiesFileUtil {
      * @param propertyFilePath the path of the properties file
      * @throws IOException in case of having invalid file path
      */
-    public static void setProperties(String propertyFilePath)
-            throws IOException {
+    public static void setProperties(String propertyFilePath) throws IOException {
         properties = new Properties();
-        var reader = new BufferedReader(new FileReader(propertyFilePath));
+        BufferedReader reader = new BufferedReader(new FileReader(propertyFilePath));
 
         properties.load(reader);
         reader.close();

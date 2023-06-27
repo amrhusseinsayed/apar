@@ -148,16 +148,26 @@ public class DriverUtil {
     }
 
     /**
-     * This method is used to completely close the current browser instance
+     * This method is used to close the current browser instance
      */
     public static void closeDriver() {
         driver.quit();
     }
 
+    /**
+     * This method is used to get the active WebDriver
+     *
+     * @return the active WebDriver
+     */
     public static WebDriver getDriver() {
         return driver;
     }
 
+    /**
+     * This method is used to get the active FluentWait
+     *
+     * @return the active FluentWait
+     */
     public static FluentWait<WebDriver> getWait() {
         return wait;
     }

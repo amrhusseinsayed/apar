@@ -15,13 +15,11 @@ public class JsonFileUtil {
      *
      * @param jsonFilePath the json file path
      * @throws IOException    in case of having invalid path for the file
-     * @throws ParseException in case of not being able to parse the
-     *                        given file into a json
+     * @throws ParseException in case of not being able to parse the given file into a json
      */
-    public static JSONObject readJsonObject(String jsonFilePath)
-            throws IOException, ParseException {
-        var reader = new BufferedReader(new FileReader(jsonFilePath));
-        var parser = new JSONParser();
+    public static JSONObject readJsonObject(String jsonFilePath) throws IOException, ParseException {
+        BufferedReader reader = new BufferedReader(new FileReader(jsonFilePath));
+        JSONParser parser = new JSONParser();
         return (JSONObject) parser.parse(reader);
     }
 }

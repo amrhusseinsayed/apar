@@ -10,7 +10,7 @@ import java.io.File;
 import java.util.Base64;
 
 public class ScreenshotUtil {
-    private static Logger log = Logger.getLogger(ScreenshotUtil.class);
+    private static final Logger log = Logger.getLogger(ScreenshotUtil.class);
 
     /**
      * This method is used to take a screenshot from the current view
@@ -21,19 +21,13 @@ public class ScreenshotUtil {
      * @return the path of the captured screenshot
      * @throws Exception in case of not being able to take the screenshot
      */
-    public static String takeScreenshot(WebDriver driver
-            , String screenshotsPath, String fileName) throws Exception {
-        var filePath = screenshotsPath + fileName;
+    public static String takeScreenshot(WebDriver driver, String screenshotsPath, String fileName) throws Exception {
+        String filePath = screenshotsPath + fileName;
 
         try {
-            File scrFile = ((TakesScreenshot) driver)
-                    .getScreenshotAs(OutputType.FILE);
-
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile, new File(filePath));
-
-            byte[] fileContent = FileUtils
-                    .readFileToByteArray(new File(filePath));
-
+            byte[] fileContent = FileUtils.readFileToByteArray(new File(filePath));
             return Base64.getEncoder().encodeToString(fileContent);
         } catch (Exception e) {
             log.error("Exception while taking the screenshot");

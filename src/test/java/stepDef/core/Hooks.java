@@ -5,6 +5,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.Status;
 import io.cucumber.java.en.Given;
 import org.apache.log4j.Logger;
 import utils.*;
@@ -27,7 +28,7 @@ public class Hooks extends ActionsUtil {
 
     /**
      * This method is executed before each scenario to log that the
-     * scenario is started using its name inside the logs.txt file and
+     * scenario is started using its name inside the log file and
      * add a new entry for the test case to be executed inside the
      * html report  using its name
      *
@@ -35,7 +36,7 @@ public class Hooks extends ActionsUtil {
      */
     @Before(order = 0)
     public void before(Scenario scenario) {
-        var scenarioName = scenario.getName();
+        String scenarioName = scenario.getName();
 
         log.info("---------------------------------------------------------------");
         log.info(String.format("Test Case Name: %s", scenarioName));
@@ -114,8 +115,8 @@ public class Hooks extends ActionsUtil {
      *                   scenario
      */
     private void logTestRunResults(Scenario scenario) throws Exception {
-        var scenarioStatus = scenario.getStatus();
-        var scenarioName = scenario.getName();
+        Status scenarioStatus = scenario.getStatus();
+        String scenarioName = scenario.getName();
 
         switch (scenarioStatus) {
             case PASSED:
@@ -123,7 +124,7 @@ public class Hooks extends ActionsUtil {
                 break;
             case FAILED:
                 if (driver != null) {
-                    var screenshotsPath = properties.getProperty("screenshotsPath");
+                    String screenshotsPath = properties.getProperty("screenshotsPath");
 
                     test.log(LogStatus.ERROR, "Check the following screenshot: "
                             + test.addBase64ScreenShot("data:image/png;charset=utf-8;base64, " +

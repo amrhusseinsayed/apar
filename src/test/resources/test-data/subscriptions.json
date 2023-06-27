@@ -9,9 +9,74 @@
         "devices": "4",
         "rewind": "For 14 days",
         "offline": false,
-        "simultaneously": false,
+        "simultaneously": null,
         "cast": false,
         "fight": "5.33USD/month"
+      },
+      {
+        "name": "CLASSIC",
+        "price": "0.5 USD/month",
+        "discovery": "Included",
+        "quality": "Full HD",
+        "devices": "4",
+        "rewind": "For 14 days",
+        "offline": true,
+        "simultaneously": "2 Devices",
+        "cast": true,
+        "fight": "5.33USD/month"
+      },
+      {
+        "name": "PREMIUM",
+        "price": "1 USD/month",
+        "discovery": "Included",
+        "quality": "4k",
+        "devices": "8",
+        "rewind": "For 14 days",
+        "offline": true,
+        "simultaneously": "4 Devices",
+        "cast": true,
+        "fight": "5.33USD/month"
+      }
+    ],
+    "UAE": [
+      {
+        "name": "LITE",
+        "price": "5.4 USD/month",
+        "discovery": "Included",
+        "freeTrial": true,
+        "quality": "HD",
+        "devices": "4",
+        "rewind": "1 Day",
+        "offline": false,
+        "simultaneously": null,
+        "cast": false,
+        "fight": "Аvailable"
+      },
+      {
+        "name": "CLASSIC",
+        "price": "10.9 USD/month",
+        "discovery": "Included",
+        "freeTrial": true,
+        "quality": "Full HD",
+        "devices": "4",
+        "rewind": "For 7 days",
+        "offline": true,
+        "simultaneously": "2 Devices",
+        "cast": true,
+        "fight": "Аvailable"
+      },
+      {
+        "name": "PREMIUM",
+        "price": "16.3 USD/month",
+        "discovery": "Included",
+        "freeTrial": true,
+        "quality": "4k",
+        "devices": "8",
+        "rewind": "For 14 days",
+        "offline": true,
+        "simultaneously": "4 Devices",
+        "cast": true,
+        "fight": "Аvailable"
       }
     ]
   }

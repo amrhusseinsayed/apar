@@ -17,6 +17,8 @@ public class HomepageDef extends ActionsUtil {
      */
     @Then("^validates the plans details for (.*)$")
     public void validates_the_plan_details_for(String country) throws IOException, ParseException {
+        logInfo(String.format("Validating the subscription plans for %s", country));
+        homepage.selectCountry(country);
         homepage.validateSubscriptionPlans(country);
     }
 }

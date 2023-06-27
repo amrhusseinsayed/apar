@@ -41,8 +41,25 @@ public class ActionsUtil {
         }
     }
 
+    /**
+     * This method is used to find the list of elements that have the
+     * given locator
+     *
+     * @param locator the locator of the desired elements
+     * @return the matched web elements
+     */
     protected List<WebElement> findElements(By locator) {
         return driver.findElements(locator);
+    }
+
+    /**
+     * This method is used to find the element that has the given locator
+     *
+     * @param locator the locator of the desired element
+     * @return the matched web element
+     */
+    protected WebElement findElement(By locator) {
+        return driver.findElement(locator);
     }
 
     /**
@@ -122,6 +139,16 @@ public class ActionsUtil {
      */
     protected void waitForElementVisibility(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    /**
+     * This method is used to wait for the element that has the given locator and text
+     *
+     * @param locator the locator of the element
+     * @param text    the text of the element
+     */
+    protected void waitForLocatorWithText(By locator, String text) {
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, text));
     }
 
     /**
