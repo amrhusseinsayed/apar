@@ -1,0 +1,8 @@
+27-Jun-23 15:29:27 [INFO] Hooks.before:40 - ---------------------------------------------------------------
+27-Jun-23 15:29:27 [INFO] Hooks.before:41 - Test Case Name: Registration Scenario
+27-Jun-23 15:29:27 [INFO] Hooks.before:42 - Status: Started
+27-Jun-23 15:29:27 [INFO] Hooks.before:43 - ---------------------------------------------------------------
+27-Jun-23 15:29:27 [INFO] ActionsUtil.logInfo:192 - Initializing the browser instance
+27-Jun-23 15:29:29 [INFO] ActionsUtil.logInfo:192 - Navigating to the URL: 'https://subscribe.jawwy.tv/eg-en'
+27-Jun-23 15:29:35 [INFO] ActionsUtil.logSuccess:214 - Test Status: Passed
+27-Jun-23 15:29:35 [INFO] ActionsUtil.logInfo:192 - Closing the running browser instance
